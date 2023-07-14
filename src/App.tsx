@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import CurrentTime from './timeOutput/CurrentTime';
 
 function App() {
+  const APICall = async () =>{
+    try {
+      const {data}=await axios.get('http://35.184.55.194/customers/')
+      const {results} = data
+      console.log(results)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  APICall()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CurrentTime/>
     </div>
   );
 }
