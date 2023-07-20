@@ -1,11 +1,12 @@
 
 import ClientMainPage from '../client/ClientMainPage';
+import MainRoute from '../routes/MainRoute';
 
 
 function App() {
   return (
     <div className="App">
-      <ClientMainPage/>
+      <MainRoute/>
     </div>
   );
 }

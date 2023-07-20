@@ -4,7 +4,7 @@ import Marquee from 'react-fast-marquee'
 const MarqueeText = () => {
   return (
     <footer>
-         <Marquee speed={150} delay={5}>
+         <Marquee speed={150} delay={1}>
       <p>Стоимость выпуска карты -бесплатно</p>
       </Marquee>
     </footer>
