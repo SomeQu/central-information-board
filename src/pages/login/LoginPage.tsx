@@ -1,48 +1,92 @@
-import { TypeOf, object, string } from 'zod';
-import './LoginPage.scss'
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useLoginUserMutation } from '../../redux/api/authApi';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
-const loginSchema = object({
-  email: string()
-    .min(1, 'Email address is required')
-    .email('Email Address is invalid'),
-  password: string()
-    .min(1, 'Password is required')
-    .min(8, 'Password must be more than 8 characters')
-    .max(32, 'Password must be less than 32 characters'),
-});
-export type LoginInput = TypeOf<typeof loginSchema>;
-const LoginPage = () => {
-  const methods = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema),
-  });
-  const [loginUser, { isLoading, isError, error, isSuccess }] =
-  useLoginUserMutation();
-  const navigate = useNavigate();
-  const location = useLocation();
+import { useRef, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-  const onSubmitHandler: SubmitHandler<LoginInput> = (values) => {
-    // 👇 Executing the loginUser Mutation
-    loginUser(values);
-  }
-  return (
-    <div className='main'>
-    <div className='secondary'>
-      <div className='third'>
-        <img src="RSK_Bank_Logo 1.svg" alt="" />
-        <h1>Информационное табло</h1>
-      </div>
-      <form className='buttons'>
-      <input name='name' className='input' type="text" placeholder='Введите адрес электронной почты' />
-      <input name='password' className='input' type="text" placeholder='Введите пароль' />
-      <button className='btn'>войти</button>
-      </form>
-    </div>
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCurrentToken, setCredentials } from '../../redux/features/auth/authSlice'
+import { useLoginMutation } from '../../redux/features/auth/authApiSlice'
 
-    </div>
-  )
+const Login = () => {
+  const token = useSelector(selectCurrentToken)
+    const userRef = useRef<any>()
+    const errRef = useRef<any>()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [errMsg, setErrMsg] = useState('')
+    const navigate = useNavigate()
+  
+
+    const [login, { isLoading }] = useLoginMutation()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        userRef.current.focus()
+    }, [])
+
+    useEffect(() => {
+        setErrMsg('')
+    }, [username, password])
+
+    const handleSubmit = async (e:any) => {
+      console.log(token)
+        e.preventDefault()
+
+        try {
+            const userData = await login({ username, password }).unwrap()
+            dispatch(setCredentials({ ...userData, username }))
+            setUsername('')
+            setPassword('')
+            navigate('/admin')
+        } catch (err:any) {
+            if (!err?.originalStatus) {
+                // isLoading: true until timeout occurs
+                setErrMsg('No Server Response');
+            } else if (err.originalStatus === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.originalStatus === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            errRef.current.focus();
+        }
+        
+    }
+
+    const handleUserInput = (e:any) => setUsername(e.target.value)
+
+    const handlePwdInput = (e:any) => setPassword(e.target.value)
+
+    const content = isLoading ? <h1>Loading...</h1> : (
+        <section className="login">
+            <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
+            <h1>Employee Login</h1>
+
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    value={username}
+                    onChange={handleUserInput}
+                    autoComplete="off"
+                    required
+                />
+
+                <label htmlFor="password">Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    onChange={handlePwdInput}
+                    value={password}
+                    required
+                />
+                <button>Sign In</button>
+            </form>
+        </section>
+    )
+
+    return content
 }
-
-export default LoginPage
+export default Login
