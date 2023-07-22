@@ -4,6 +4,8 @@ import LoginPage from '../pages/login/LoginPage'
 import ClientMainPage from '../client/ClientMainPage'
 import AdminPage from '../pages/adminPanel/AdminPage'
 import RequireAuth from '../redux/features/auth/RequireAuth'
+import { ApiProvider } from '@reduxjs/toolkit/dist/query/react'
+import { BoardApi } from '../redux/boardConfiguration/apiSlice'
 
 const MainRoute = () => {
   return ( 
