@@ -1,4 +1,5 @@
 import React from 'react'
+import { Ticketinfo } from '../../ClientMainPage'
 
 const AdComponent = () => {
   return (

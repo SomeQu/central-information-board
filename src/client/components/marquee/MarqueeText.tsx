@@ -1,11 +1,12 @@
 import React from 'react'
 import Marquee from 'react-fast-marquee'
+import { IData } from '../../ClientMainPage'
 
-const MarqueeText = () => {
+const MarqueeText = ({text}:any) => {
   return (
     <footer>
          <Marquee speed={150} delay={1}>
-      <p>Стоимость выпуска карты -бесплатно</p>
+      <p>{text}</p>
       </Marquee>
     </footer>
   )
