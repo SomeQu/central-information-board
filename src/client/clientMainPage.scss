@@ -59,9 +59,16 @@ article{
 .clients{
     margin-right:6.3rem;
 }
+.operators{
+    margin-right:6.3rem;
+}
+.floor{
+    margin-right:6.3rem;
+}
 
 aside{
-    // border:2px solid rgb(255, 0, 0);
+    margin-top: 10rem;
+    //  border:2px solid rgb(255, 0, 0);
     display: flex;
     align-items:center;
     justify-content: center;
@@ -88,3 +95,32 @@ footer{
 
     }
 }
+@keyframes changeColor {
+    0% {
+      color: white;
+    }
+    50% {
+      color: black;
+    }
+    100%{
+        color:white
+    }
+   
+
+  }
+  .animated {
+    animation: changeColor infinite;
+    animation-duration: 1000ms;
+    
+  }
+
+  .started{
+    color:#116ACC
+  }
+  .waiting-queue{
+    display: flex;
+  }
+  .waiting-queue__list{
+    margin-right: 1rem;
+  }
+

@@ -11,7 +11,7 @@ const MainPage = () => {
       </div>
       <div className='buttons'>
         <h2>Войти как</h2>
-      <Link className='btn' to={'/client'}>Клиент</Link>
+      <Link className='btn' to={'/branch'}>Клиент</Link>
       <Link className='btn' to={'/login'}>Администратор</Link>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useGetBoardQuery } from '../../redux/boardConfiguration/apiSlice'
 import axios from '../../server/axios/axios'
-
+import './AdminPage.scss'
 interface IBoard {
   ads: any,
   bold: boolean,
@@ -29,13 +29,14 @@ const AdminPage = () => {
   }
 
   return (
-    <div>
-      <select>
-  {id.map((id:any, index:number)=>{ 
-    <option>1123213</option>
-  })}
-</select>
-  <button onClick={()=>{  getboards()}}>Show</button>
+    <div className='main'>
+      <div className="secondary">
+      <h1>
+    Выберите филиал
+      </h1>
+      <button className='btn'>Перейти</button>
+
+      </div>
     </div>
   )
 }

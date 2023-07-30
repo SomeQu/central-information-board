@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Socket } from 'net'
 import { WebsocketBuilder } from 'websocket-ts'
 import axios from '../server/axios/axios'
+import WaitingQueue from './waitngQueue/WaitingQueue'
 
 export interface IData
   {
@@ -33,7 +34,7 @@ export interface IData
   const ClientMainPage = () => {
     
     useEffect(()=>{
-      const ws = new WebsocketBuilder('ws://35.228.114.191/ws/board/1/')
+      const ws = new WebsocketBuilder('ws://35.228.114.191/ws/board/3/')
       .onOpen((i, ev) => { console.log("opened") })
       .onClose((i, ev) => { console.log("closed") })
       .onError((i, ev) => { console.log("error") })
@@ -46,11 +47,8 @@ export interface IData
       .build();
      },[])
     
-
-  
-  const [boardInfo,setBoardInfo] = useState<IData | null>(null)
   const [ticketInfo, setTicketInfo] = useState<any>([])
-
+  const [waitingList, setWaitingList] = useState<any>([])
 
 
 
@@ -60,9 +58,12 @@ export interface IData
         <button>getdata</button>
         <div className='hero'>
         <QueueComponent ticketInfo={ticketInfo}/>
+        <div>
         <AdComponent/>
+        <WaitingQueue/>
         </div>
-        <MarqueeText text={boardInfo?.text}/>
+        </div>
+        <MarqueeText/>
       </div>
     )
   }
