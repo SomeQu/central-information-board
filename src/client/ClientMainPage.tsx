@@ -56,7 +56,7 @@ const ClientMainPage = () => {
       <div className="hero">
         <QueueComponent ticketInfo={ticketInfo} />
         <div>
-          <AdComponent ads={boardInfo.ads} />
+          <AdComponent ads={boardInfo?.ads} />
           <WaitingQueue />
         </div>
       </div>

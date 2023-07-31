@@ -1,21 +1,24 @@
-import { Link } from 'react-router-dom'
-import './MainPage.scss'
+import { Link, useNavigate } from "react-router-dom";
+import "./MainPage.scss";
 const MainPage = () => {
+  const navigate = useNavigate();
+
+  const goToBranches = () => {
+    navigate("/branch");
+  };
   return (
-    <div className='main'>
-    <div className='secondary'>
-      <div className='third'>
-        <img src="RSK_Bank_Logo 1.svg" alt="" />
-        <h1>Информационное табло</h1>
+    <div className="main">
+      <div className="main-hero">
+        <h1>добро пожаловать!</h1>
       </div>
-      <div className='buttons'>
-        <h2>Добро пожаловать </h2>
-      <Link className='btn' to={'/branch'}>Далее</Link>
+      <div className="logo">
+        <img src="Rsk_main.png" alt="" />
+        <h2>Информационное табло</h2>
+
+        <button onClick={goToBranches}>Далее</button>
       </div>
     </div>
+  );
+};
 
-    </div>
-  )
-}
-
-export default MainPage
+export default MainPage;

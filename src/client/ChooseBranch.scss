@@ -1,5 +1,11 @@
 * {
   text-decoration: none;
+  color: rgba(0, 0, 0, 0.66);
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .branch-header {
   display: flex;
@@ -9,18 +15,24 @@
   border-bottom: 2px solid #0174b1;
 }
 .branch-hero {
+  margin-top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   select {
+    margin-top: 2rem;
     display: flex;
-    text-decoration: none;
-    text-align: center;
-    width: 15.625rem;
-    height: 3.4375rem;
-    padding: 0.625rem;
-    justify-content: center;
+    width: 20.875rem;
+    height: 3.8125rem;
     align-items: center;
-    border-radius: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 500;
+    gap: 6.625rem;
+    color: #333030;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: normal;
+    border-bottom: 2px solid black;
+    border-radius: 1px;
   }
 
   button {
@@ -38,4 +50,42 @@
     font-size: 1.25rem;
     font-weight: 500;
   }
+}
+
+.choose-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  span {
+    color: #3993c3;
+  }
+}
+.h1-main {
+  font-size: 3rem;
+  span {
+    color: #3993c3;
+  }
+}
+
+.second-btn {
+  margin-top: 3rem;
+  display: flex;
+  width: 33.625rem;
+  height: 7.875rem;
+  padding: 0rem 0.87631rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.43819rem;
+  flex-shrink: 0;
+  border-radius: 1.3145rem;
+  border: 3px solid #0174b1;
+  background: var(
+    --linear,
+    linear-gradient(180deg, rgba(64, 151, 197, 0.99) 0%, #0174b1 100%)
+  );
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 500;
 }

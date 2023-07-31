@@ -88,26 +88,25 @@ const QueueComponent = (props: {
           );
         })}
       </div>
-      <div className="floor">
-        <h3>Этаж</h3>
-        {tickets?.map((item: Ticketinfo) => {
-          return (
-            <h3 className={item?.status === "called" ? "animated" : "started"}>
-              {item?.floor}
-            </h3>
-          );
-        })}
-      </div>
+
       <div className="cabinet">
         <h3>Кабинет</h3>
         {tickets?.map((item: Ticketinfo) => {
           return (
-            <h3
-              key={item.id}
-              className={item?.status === "called" ? "animated" : "started"}
-            >
-              {item?.cabinet}
-            </h3>
+            <div>
+              <h5
+                key={item.id}
+                className={item?.status === "called" ? "animated" : "started"}
+              >
+                №{item?.cabinet} Кабинет
+              </h5>
+              <h5
+                key={item.id}
+                className={item?.status === "called" ? "animated" : "started"}
+              >
+                {item?.floor}-Этаж
+              </h5>
+            </div>
           );
         })}
       </div>

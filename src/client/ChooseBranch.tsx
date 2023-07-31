@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ChooseBranch.scss";
 import axios from "../axios/axios";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/redux";
@@ -8,6 +8,11 @@ import { IBranch } from "./types/types";
 import { boardIdSlice } from "../redux/reducers/boardIdSlice";
 
 const ChooseBranch = () => {
+  const navigate = useNavigate();
+
+  const goToClient = () => {
+    navigate("/client");
+  };
   const { id } = useAppSelector((state) => state.idReducer);
   const { changeId } = idSlice.actions;
   const { boardId } = useAppSelector((state) => state.boardIdReducer);
@@ -33,7 +38,9 @@ const ChooseBranch = () => {
         </div>
       </div>
       <div className="branch-hero">
-        <h1>Выберите филиал</h1>
+        <h1 className="h1-main">
+          Выберите <span>филиал</span>
+        </h1>
         <select
           onChange={(e) => {
             dispatch(changeId(e.target.value));
@@ -47,7 +54,7 @@ const ChooseBranch = () => {
         >
           <option disabled selected>
             {" "}
-            Выберите филиал{" "}
+            ---------------------------{" "}
           </option>
           {branches.map((item: IBranch) => {
             return (
@@ -57,33 +64,44 @@ const ChooseBranch = () => {
             );
           })}
         </select>
-        <div>
-          {id ? <h1> Выберите информационное окно</h1> : ""}
-          <select
-            onChange={(e) => {
-              dispatch(changeBoardId(e.target.value));
-              console.log(boardId);
-            }}
-          >
-            <option disabled selected>
+        {id ? (
+          <div className="choose-window">
+            <h1>
               {" "}
-              Выберите окно{" "}
-            </option>
-            {id
-              ? boards?.map((item: any) => {
-                  return <option key={item.id}>{item.id}</option>;
-                })
-              : ""}
-          </select>
+              Выберите <span>информационное окно</span>
+            </h1>
+            <select
+              onChange={(e) => {
+                dispatch(changeBoardId(e.target.value));
+                console.log(boardId);
+              }}
+            >
+              <option disabled selected>
+                {" "}
+                ---------------------------{" "}
+              </option>
+              {id
+                ? boards?.map((item: any) => {
+                    return <option key={item.id}>{item.id}</option>;
+                  })
+                : ""}
+            </select>
 
-          {boards ? (
-            <Link to={"/client"}>
-              <button onClick={() => console.log(boardId)}>Click</button>
-            </Link>
-          ) : (
-            ""
-          )}
-        </div>
+            {boardId ? (
+              <button
+                className="second-btn"
+                disabled={boardId ? false : true}
+                onClick={goToClient}
+              >
+                Далее
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
