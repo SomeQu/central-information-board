@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import './MainPage.scss'
-import ClientMainPage from '../../client/ClientMainPage'
 const MainPage = () => {
   return (
     <div className='main'>
@@ -10,9 +9,8 @@ const MainPage = () => {
         <h1>Информационное табло</h1>
       </div>
       <div className='buttons'>
-        <h2>Войти как</h2>
-      <Link className='btn' to={'/branch'}>Клиент</Link>
-      <Link className='btn' to={'/login'}>Администратор</Link>
+        <h2>Добро пожаловать </h2>
+      <Link className='btn' to={'/branch'}>Далее</Link>
       </div>
     </div>
 
