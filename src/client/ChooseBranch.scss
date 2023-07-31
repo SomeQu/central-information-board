@@ -1,38 +1,41 @@
-.branch-header{
+* {
+  text-decoration: none;
+}
+.branch-header {
+  display: flex;
+  margin: 3rem;
+}
+.branch {
+  border-bottom: 2px solid #0174b1;
+}
+.branch-hero {
+  select {
     display: flex;
-    margin:3rem;
+    text-decoration: none;
+    text-align: center;
+    width: 15.625rem;
+    height: 3.4375rem;
+    padding: 0.625rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
 
-}
-.branch{
-    border-bottom:2px solid #0174B1;
-}
-.branch-hero{
-    select{
-        display: flex;
-        text-decoration: none;
-        text-align: center;
-        width: 15.625rem;
-        height: 3.4375rem;
-        padding: 0.625rem;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0.5rem;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
-    button{
-        display: flex;
-        text-decoration: none;
-        text-align: center;
-        width: 15.625rem;
-        height: 3.4375rem;
-        padding: 0.625rem;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0.5rem;
-        background: #3993C3;
-        color:white;
-        font-size: 1.25rem;
-        font-weight: 500;
-    }
+  button {
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+    width: 15.625rem;
+    height: 3.4375rem;
+    padding: 0.625rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    background: #3993c3;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
 }

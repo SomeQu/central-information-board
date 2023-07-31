@@ -1,12 +1,9 @@
-import React from 'react'
-import { Ticketinfo } from '../../ClientMainPage'
-
-const AdComponent = () => {
+const AdComponent = ({ ads }: any) => {
   return (
     <aside>
-        <img src="изображение 7.png" alt="" />
+      <img src="изображение 7.png" alt="" />
     </aside>
-  )
-}
+  );
+};
 
-export default AdComponent
+export default AdComponent;
